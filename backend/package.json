@@ -1,0 +1,40 @@
+{
+  "name": "cathedra-backend",
+  "version": "1.0.0",
+  "description": "Migración desde Rails a NestJS",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "build": "nest build",
+    "migrate": "yarn && yarn typeorm migration:run -d data-source.ts && yarn start",
+    "seed": " yarn ts-node src/seeder.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^9.0.0",
+    "@nestjs/core": "^9.0.0",
+    "@nestjs/jwt": "^9.0.0",
+    "@nestjs/passport": "^9.0.0",
+    "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/typeorm": "^9.0.0",
+    "bcrypt": "^5.0.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.2.0",
+    "typeorm": "^0.3.10"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^9.0.0",
+    "@nestjs/schematics": "^9.0.0",
+    "@nestjs/testing": "^9.0.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/passport-jwt": "^4.0.1",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  }
+}
