@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, In } from 'typeorm';
+
+
 import { Role } from './entities/role.entity';
-import { Repository } from 'typeorm';
-import { Permission } from '../../permisos/entities/permission.entity';
+import { Permission } from '../permisos/entities/permission.entity';
 
 @Injectable()
 export class RolesService {
@@ -11,12 +13,14 @@ export class RolesService {
     private roleRepo: Repository<Role>,
     @InjectRepository(Permission)
     private permisoRepo: Repository<Permission>,
-  ) {}
+  ) { }
 
-  create(nombre: string, permisoIds: number[]) {
+  async create(nombre: string, permisoIds: number[]) {
+    const permisos = await this.permisoRepo.findBy({ id: In(permisoIds) });
+
     return this.roleRepo.save({
       nombre,
-      permisos: permisoIds.map(id => ({ id })),
+      permisos: permisos,
     });
   }
 

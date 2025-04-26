@@ -29,7 +29,11 @@ async function bootstrap() {
   // Permisos y roles
   const p1 = await permisosService.create('admin', 'Acceso total');
   const p2 = await permisosService.create('ver_consultas', 'Ver y responder consultas');
-
+  if (!p1 || !p2) {
+    console.log("🚀 ~ bootstrap ~ p2:", p2)
+    console.log("🚀 ~ bootstrap ~ p1:", p1)
+    throw new Error('Permisos requeridos no encontrados');
+  }
   const adminRole = await rolesService.create('Admin', [p1.id, p2.id]);
   const profeRole = await rolesService.create('Profesor', [p2.id]);
   const alumnoRole = await rolesService.create('Alumno', []);

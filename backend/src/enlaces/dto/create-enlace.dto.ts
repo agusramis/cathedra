@@ -3,11 +3,11 @@ import { IsNotEmpty, IsOptional, IsString, IsUrl, IsInt } from 'class-validator'
 export class CreateEnlaceDto {
   @IsNotEmpty()
   @IsString()
-  titulo: string;
+  titulo!: string;
 
   @IsNotEmpty()
   @IsUrl()
-  url: string;
+  url!: string;
 
   @IsOptional()
   @IsInt()

@@ -5,6 +5,7 @@ import { Registro } from '../../registros/entities/registro.entity';
 import { Consulta } from '../../consultas/entities/consulta.entity';
 import { Carrera } from '../../carreras/entities/carrera.entity';
 import { Item } from '../../items/entities/item.entity';
+import { Enlace } from '../../enlaces/entities/enlace.entity';
 
 @Entity('materias')
 export class Materia {
@@ -34,4 +35,7 @@ export class Materia {
 
   @OneToMany(() => Item, item => item.materia, { cascade: true })
   items!: Item[];
+
+  @OneToMany(() => Enlace, enlace => enlace.materia, { cascade: true })
+  enlaces!: Enlace[];
 }

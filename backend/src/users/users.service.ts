@@ -11,7 +11,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-  ) {}
+  ) { }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
@@ -26,15 +26,15 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(id: number): Promise<User> {
+  findOne(id: number): Promise<User | null> {
     return this.usersRepository.findOneBy({ id });
   }
 
-  findByEmail(email: string): Promise<User> {
+  findByEmail(email: string): Promise<User | null> {
     return this.usersRepository.findOneBy({ email });
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User | null> {
     await this.usersRepository.update(id, updateUserDto);
     return this.findOne(id);
   }

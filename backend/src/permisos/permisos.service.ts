@@ -8,10 +8,16 @@ export class PermisosService {
   constructor(
     @InjectRepository(Permission)
     private permisoRepo: Repository<Permission>,
-  ) {}
+  ) { }
 
   create(clave: string, descripcion: string) {
-    return this.permisoRepo.save({ clave, descripcion });
+    const existente = this.permisoRepo.findOneBy({ clave: 'admin' });
+    if (!existente) {
+      return this.permisoRepo.save({ clave, descripcion });
+    }
+
+    return existente;
+
   }
 
   findAll() {

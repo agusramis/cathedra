@@ -2,8 +2,8 @@ import { IsInt } from 'class-validator';
 
 export class CreateRegistroDto {
   @IsInt()
-  materiaId: number;
+  materiaId!: number;
 
   @IsInt()
-  usuarioId: number;
+  usuarioId!: number;
 }

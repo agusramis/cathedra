@@ -3,7 +3,7 @@ import { IsNotEmpty, IsOptional, IsString, IsInt } from 'class-validator';
 export class CreateItemDto {
   @IsNotEmpty()
   @IsString()
-  nombre: string;
+  nombre!: string;
 
   @IsOptional()
   @IsString()

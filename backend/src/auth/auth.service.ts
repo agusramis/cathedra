@@ -35,4 +35,14 @@ export class AuthService {
   async register(registerDto: RegisterDto) {
     return this.usersService.create(registerDto);
   }
+
+  async validateUserAndGenerateToken(email: string, password: string): Promise<string | null> {
+    const user = await this.usersService.findByEmail(email);
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return null;
+    }
+    const payload = { email: user.email, sub: user.id, rol: user.rol };
+    return this.jwtService.sign(payload);
+  }
+
 }

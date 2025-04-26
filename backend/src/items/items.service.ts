@@ -4,19 +4,21 @@ import { Repository } from 'typeorm';
 import { Item } from './entities/item.entity';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
+import { Materia } from '../materias/entities/materia.entity';
+import { Clase } from '../clases/entities/clase.entity';
 
 @Injectable()
 export class ItemsService {
   constructor(
     @InjectRepository(Item)
     private readonly repo: Repository<Item>,
-  ) {}
+  ) { }
 
   create(dto: CreateItemDto) {
     return this.repo.save({
       ...dto,
-      materia: dto.materiaId ? { id: dto.materiaId } : null,
-      clase: dto.claseId ? { id: dto.claseId } : null,
+      materia: dto.materiaId ? ({ id: dto.materiaId } as Materia) : undefined,
+      clase: dto.claseId ? ({ id: dto.claseId } as Clase) : undefined,
     });
   }
 
@@ -31,8 +33,8 @@ export class ItemsService {
   async update(id: number, dto: UpdateItemDto) {
     await this.repo.update(id, {
       ...dto,
-      materia: dto.materiaId ? { id: dto.materiaId } : null,
-      clase: dto.claseId ? { id: dto.claseId } : null,
+      materia: dto.materiaId ? ({ id: dto.materiaId } as Materia) : undefined,
+      clase: dto.claseId ? ({ id: dto.claseId } as Clase) : undefined,
     });
     return this.findOne(id);
   }

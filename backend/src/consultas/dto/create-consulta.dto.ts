@@ -3,11 +3,11 @@ import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 export class CreateConsultaDto {
   @IsNotEmpty()
   @IsString()
-  pregunta: string;
+  pregunta!: string;
 
   @IsInt()
-  autorId: number;
+  autorId!: number;
 
   @IsInt()
-  materiaId: number;
+  materiaId!: number;
 }

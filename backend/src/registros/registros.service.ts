@@ -10,7 +10,7 @@ export class RegistrosService {
   constructor(
     @InjectRepository(Registro)
     private readonly registroRepo: Repository<Registro>,
-  ) {}
+  ) { }
 
   create(dto: CreateRegistroDto) {
     return this.registroRepo.save({

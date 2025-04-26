@@ -31,4 +31,4 @@ import { typeOrmConfig } from '../config/typeorm.config';
     PermisosModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }

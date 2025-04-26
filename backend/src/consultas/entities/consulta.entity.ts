@@ -5,20 +5,20 @@ import { Materia } from '../../materias/entities/materia.entity';
 @Entity('consultas')
 export class Consulta {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column('text')
-  pregunta: string;
+  pregunta!: string;
 
   @Column('text', { nullable: true })
-  respuesta: string;
+  respuesta!: string;
 
   @ManyToOne(() => User, user => user.consultas_realizadas, { onDelete: 'CASCADE' })
-  autor: User;
+  autor!: User;
 
   @ManyToOne(() => User, user => user.consultas_respondidas, { onDelete: 'SET NULL', nullable: true })
-  respondidoPor: User;
+  respondidoPor!: User;
 
   @ManyToOne(() => Materia, materia => materia.consultas, { onDelete: 'CASCADE' })
-  materia: Materia;
+  materia!: Materia;
 }

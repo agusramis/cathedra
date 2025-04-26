@@ -1,20 +1,20 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Materia } from '../../../materias/entities/materia.entity';
+import { Materia } from '../../materias/entities/materia.entity';
 
 @Entity('documentos')
 export class Documento {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  titulo: string;
+  titulo!: string;
 
   @Column()
-  url: string;
+  url!: string;
 
   @Column({ nullable: true })
-  descripcion: string;
+  descripcion!: string;
 
   @ManyToOne(() => Materia, materia => materia.documentos, { onDelete: 'CASCADE' })
-  materia: Materia;
+  materia!: Materia;
 }
